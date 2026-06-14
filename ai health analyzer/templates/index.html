@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Health Risk Analyzer</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<nav class="navbar">
+  <a class="nav-brand" href="/">🩺 AI Health Analyzer</a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/about">About</a>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="hero">
+    <h1>AI Multi-Disease Health Risk Analyzer</h1>
+    <p>Predicts your risk for <strong>Heart Disease · Diabetes · Hypertension</strong> using Machine Learning.</p>
+  </div>
+
+  <form action="/predict" method="POST">
+
+    <div class="card">
+      <h2>📋 Patient Details</h2>
+      <div class="grid-2">
+        <div class="field">
+          <label>Age: <span id="age-val">30</span></label>
+          <input type="range" name="age" id="age" min="1" max="100" value="30"
+                 oninput="document.getElementById('age-val').textContent=this.value"/>
+        </div>
+        <div class="field">
+          <label>BMI</label>
+          <input type="number" name="bmi" value="24.5" min="10" max="60" step="0.1" required/>
+        </div>
+        <div class="field">
+          <label>Blood Pressure (mmHg)</label>
+          <input type="number" name="bp" value="120" min="60" max="220" required/>
+        </div>
+        <div class="field">
+          <label>Glucose Level (mg/dL)</label>
+          <input type="number" name="glucose" value="100" min="40" max="400" required/>
+        </div>
+        <div class="field">
+          <label>Cholesterol (mg/dL)</label>
+          <input type="number" name="cholesterol" value="190" min="80" max="400" required/>
+        </div>
+        <div class="field">
+          <label>Smoking</label>
+          <select name="smoking">
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>🧪 Symptom Checker</h2>
+      <p class="hint">Select any symptoms you are currently experiencing:</p>
+      <div class="grid-3">
+        <label class="checkbox"><input type="checkbox" name="chest_pain"/>  Chest Pain</label>
+        <label class="checkbox"><input type="checkbox" name="fatigue"/>  Fatigue / Weakness</label>
+        <label class="checkbox"><input type="checkbox" name="frequent_urination"/>  Frequent Urination</label>
+        <label class="checkbox"><input type="checkbox" name="headache"/>  Headache</label>
+        <label class="checkbox"><input type="checkbox" name="blurred_vision"/>  Blurred Vision</label>
+        <label class="checkbox"><input type="checkbox" name="shortness_of_breath"/>  Shortness of Breath</label>
+      </div>
+    </div>
+
+    <button type="submit" class="btn-primary">🔍 Analyze Health Risk</button>
+  </form>
+
+  {% if history %}
+  <div class="card" style="margin-top:2rem;">
+    <div class="flex-between">
+      <h2>📅 History</h2>
+      <a href="/history/clear" class="btn-danger">🗑 Clear</a>
+    </div>
+    <table>
+      <thead><tr><th>Date</th><th>Score</th><th>Heart %</th><th>Diabetes %</th><th>Hyper %</th></tr></thead>
+      <tbody>
+        {% for r in history %}
+        <tr>
+          <td>{{ r.date }}</td>
+          <td>{{ r.health_score }}</td>
+          <td>{{ r.heart_pct }}</td>
+          <td>{{ r.diabetes_pct }}</td>
+          <td>{{ r.hyper_pct }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% endif %}
+</div>
+
+<script src="/static/js/script.js"></script>
+</body>
+</html>

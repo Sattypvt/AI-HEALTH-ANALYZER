@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About | AI Health Analyzer</title>
+  <link rel="stylesheet" href="/static/css/style.css"/>
+</head>
+<body>
+
+<nav class="navbar">
+  <a class="nav-brand" href="/">🩺 AI Health Analyzer</a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/about" class="active">About</a>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="hero">
+    <h1>About This Project</h1>
+    <p>An AI-powered health risk prediction system built as a college demo project.</p>
+  </div>
+
+  <div class="card">
+    <h2>🎯 Project Goal</h2>
+    <p>This application uses Machine Learning to predict a user's risk level for three major lifestyle diseases based on clinical and lifestyle inputs.</p>
+  </div>
+
+  <div class="card">
+    <h2>🔬 Diseases Predicted</h2>
+    <div class="grid-3">
+      <div class="about-item">
+        <h3>❤️ Heart Disease</h3>
+        <p>Cardiovascular conditions caused by high BP, cholesterol, and smoking habits.</p>
+      </div>
+      <div class="about-item">
+        <h3>🩸 Diabetes</h3>
+        <p>Type 2 diabetes driven by high glucose levels, obesity, and sedentary lifestyle.</p>
+      </div>
+      <div class="about-item">
+        <h3>💉 Hypertension</h3>
+        <p>High blood pressure linked to stress, BMI, cholesterol, and salt intake.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>⚙️ How It Works</h2>
+    <ol class="steps">
+      <li>User enters health metrics and selects symptoms.</li>
+      <li>Inputs are scaled using <strong>StandardScaler</strong>.</li>
+      <li>Three separate <strong>Random Forest</strong> classifiers predict each disease.</li>
+      <li>Symptom data adjusts probabilities for more realistic results.</li>
+      <li>A <strong>Health Score (0–100)</strong> is computed from all metrics.</li>
+      <li>Results and history are saved for trend tracking.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>🛠️ Tech Stack</h2>
+    <div class="grid-3">
+      <div class="tech-badge">🐍 Python 3</div>
+      <div class="tech-badge">🌐 Flask</div>
+      <div class="tech-badge">🤖 scikit-learn</div>
+      <div class="tech-badge">🐼 pandas</div>
+      <div class="tech-badge">🔢 NumPy</div>
+      <div class="tech-badge">🎨 HTML / CSS / JS</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>📁 Project Structure</h2>
+    <pre class="code-block">AI-HEALTH-ANALYZER/
+├── app.py
+├── requirements.txt
+├── model/
+│   └── health_model.pkl
+├── data/
+│   └── dataset.csv
+├── utils/
+│   └── predictor.py
+├── static/
+│   ├── css/style.css
+│   └── js/script.js
+└── templates/
+    ├── index.html
+    ├── result.html
+    └── about.html</pre>
+  </div>
+
+  <p class="disclaimer">⚠️ This tool is for educational purposes only and is not a substitute for professional medical advice.</p>
+</div>
+
+<script src="/static/js/script.js"></script>
+</body>
+</html>

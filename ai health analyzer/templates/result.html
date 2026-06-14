@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta 
+name="viewport" 
+content="width=device-width, initial-scale=1.0">
+
+<title>
+Results | AI Health Analyzer
+</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+
+<body>
+
+
+<nav class="navbar">
+
+<a class="nav-brand" href="/">
+🩺 AI Health Analyzer
+</a>
+
+
+<div class="nav-links">
+
+<a href="/">
+Home
+</a>
+
+<a href="/about">
+About
+</a>
+
+</div>
+
+</nav>
+
+
+
+<div class="container">
+
+
+<h1>
+📊 Your Health Risk Report
+</h1>
+
+
+<p class="hint">
+AI Generated Health Report
+</p>
+
+
+
+<!-- HEALTH SCORE -->
+
+<div class="card score-card">
+
+
+<h2>
+💯 Overall Health Score
+</h2>
+
+
+<div class="score-display">
+
+
+<span 
+class="score-number"
+style="color:{{ data.cat_color }}">
+
+{{ data.health_score }}
+
+</span>
+
+
+<span class="score-denom">
+/100
+</span>
+
+
+</div>
+
+
+
+<p 
+class="score-label"
+style="color:{{ data.cat_color }}">
+
+{{ data.category }}
+
+</p>
+
+
+
+<div class="progress-bar-bg">
+
+
+<div 
+class="progress-bar-fill"
+
+style="
+width:{{ data.health_score }}%;
+background:{{ data.cat_color }};
+">
+
+</div>
+
+
+</div>
+
+
+
+<div class="score-legend">
+
+<span>
+🟢 80-100 Excellent
+</span>
+
+<span>
+🟡 60-79 Moderate
+</span>
+
+<span>
+🔴 0-59 Poor
+</span>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<!-- DISEASE RESULT CARDS -->
+
+
+{% set icons = {
+"heart":"❤️",
+"diabetes":"🩸",
+"hypertension":"💉"
+} %}
+
+
+
+{% set names = {
+
+"heart":"Heart Disease",
+
+"diabetes":"Diabetes",
+
+"hypertension":"Hypertension"
+
+} %}
+
+
+
+
+<div class="grid-3">
+
+
+{% for key,val in data.results.items() %}
+
+
+<div class="card disease-card">
+
+
+<h3>
+
+{{ icons[key] }}
+{{ names[key] }}
+
+</h3>
+
+
+
+<p 
+class="risk-label"
+style="color:{{ val.color }}">
+
+{{ val.label }}
+
+</p>
+
+
+
+
+<p class="prob">
+
+Probability:
+
+<strong>
+
+{{ val.probability }}%
+
+</strong>
+
+
+</p>
+
+
+
+
+<div class="progress-bar-bg">
+
+
+<div
+
+class="progress-bar-fill"
+
+style="
+width:{{ val.probability }}%;
+background:{{ val.color }};
+">
+
+</div>
+
+
+</div>
+
+
+
+</div>
+
+
+{% endfor %}
+
+
+
+</div>
+
+
+
+
+
+<!-- EMERGENCY ALERT -->
+
+
+{% if data.emergency %}
+
+
+<div class="emergency">
+
+
+<h3>
+⚠️ EMERGENCY ALERT
+</h3>
+
+
+
+<p>
+
+Critical conditions:
+
+<strong>
+
+{{ data.critical | join(", ") }}
+
+</strong>
+
+
+</p>
+
+
+
+<ul>
+
+<li>
+Call emergency services (112) immediately.
+</li>
+
+
+<li>
+Do not drive yourself to hospital.
+</li>
+
+
+<li>
+Inform your family member.
+</li>
+
+
+<li>
+Consult a doctor immediately.
+</li>
+
+
+</ul>
+
+
+</div>
+
+
+
+{% endif %}
+
+
+
+
+
+
+<!-- USER INPUT SUMMARY -->
+
+
+<div class="card">
+
+
+<h2>
+📝 Input Summary
+</h2>
+
+
+
+<div class="grid-2">
+
+
+{% for key,val in data.inputs.items() %}
+
+
+<div class="summary-row">
+
+
+<span class="summary-key">
+
+{{ key | title }}
+
+</span>
+
+
+
+<span class="summary-val">
+
+{{ val }}
+
+</span>
+
+
+
+</div>
+
+
+{% endfor %}
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+<p class="disclaimer">
+
+⚠️ This is not a medical diagnosis.
+It is only an AI risk prediction.
+
+</p>
+
+
+
+
+<div style="text-align:center;margin:2rem;">
+
+
+<a 
+href="/" 
+class="btn-primary">
+
+← New Analysis
+
+</a>
+
+
+
+</div>
+
+
+
+</div>
+
+
+</body>
+
+
+</html>

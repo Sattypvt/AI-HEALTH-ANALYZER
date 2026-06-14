@@ -1,0 +1,81 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: #f0f4f8;
+  color: #1a1a2e;
+  min-height: 100vh;
+}
+
+/* NAVBAR */
+.navbar {
+  background: #1a1a2e;
+  padding: .9rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-brand { color: #fff; font-size: 1.2rem; font-weight: 700; text-decoration: none; }
+.nav-links a { color: #ccc; text-decoration: none; margin-left: 1.5rem; font-size: .95rem; transition: color .2s; }
+.nav-links a:hover, .nav-links a.active { color: #2a9d8f; }
+
+/* LAYOUT */
+.container { max-width: 960px; margin: 2rem auto; padding: 0 1rem; }
+
+.hero { text-align: center; margin-bottom: 2rem; }
+.hero h1 { font-size: 2rem; color: #1a1a2e; margin-bottom: .5rem; }
+.hero p   { color: #555; font-size: 1.05rem; }
+
+/* CARDS */
+.card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,.07);
+}
+.card h2 { font-size: 1.1rem; margin-bottom: 1rem; color: #1a1a2e; }
+
+/* GRIDS */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
+@media (max-width: 640px) {
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+}
+
+/* FORM FIELDS */
+.field label { display: block; font-size: .85rem; font-weight: 600; margin-bottom: .3rem; color: #374151; }
+.field input[type="number"],
+.field input[type="range"],
+.field select {
+  width: 100%;
+  padding: .55rem .75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: #f9fafb;
+  transition: border-color .2s, box-shadow .2s;
+}
+.field input:focus, .field select:focus {
+  outline: none;
+  border-color: #2a9d8f;
+  box-shadow: 0 0 0 3px rgba(42,157,143,.15);
+}
+
+.hint  { font-size: .85rem; color: #6b7280; margin-bottom: .75rem; }
+
+/* CHECKBOXES */
+.checkbox {
+  display: flex; align-items: center; gap: .5rem;
+  font-size: .9rem; cursor: pointer; padding: .4rem .6rem;
+  border-radius: 8px; transition: background .15s; user-select: none;
+}
+.checkbox:hover { background: #f3f4f6; }
+.checkbox input { width: 16px; height: 16px; cursor: pointer; accent-color: #2a9d8f; }
+
+/* BUTTONS */
+.btn-primary {
+  display: block; width: 100%;
+  padding: .85rem; background: #2a9d8f; color: #fff;
+  font-size: 1.1rem; font-weight: 700; border: none;
+  border-radius: 10; }
